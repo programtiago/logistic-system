@@ -11,7 +11,6 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "t_client")
 public class Client {
 
     @Id
