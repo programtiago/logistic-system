@@ -1,16 +1,26 @@
 package com.devtiago.logisticsystem.domain;
 
 import com.devtiago.logisticsystem.enums.DeliveryStatus;
+import lombok.*;
 
+import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Entity
+@Table(name = "t_shipment")
 public class Shipment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Supplier supplier;
-    private ArrayList<Product> products;
+    @OneToMany(mappedBy = "shipment")
+    private List<Product> products;
     private ZonedDateTime previsionDate;
     private ZonedDateTime shipmentDate;
     private DeliveryStatus shipmentStatus;
