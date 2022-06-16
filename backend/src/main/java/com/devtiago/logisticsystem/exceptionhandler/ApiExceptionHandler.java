@@ -1,6 +1,8 @@
 package com.devtiago.logisticsystem.exceptionhandler;
 
 
+import com.devtiago.logisticsystem.domain.exception.DomainException;
+import com.devtiago.logisticsystem.domain.exception.EntityExceptionNotFound;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +53,26 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(DomainException.class)
     public ResponseEntity<Object> handleDomain(DomainException ex, WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
 
+        Error error = new Error();
+        error.setStatus(status.value());
+        error.setDateHour(ZonedDateTime.now());
+        error.setTitle(ex.getMessage());
+
+        return handleExceptionInternal(ex, error, new HttpHeaders(), status, request);
+    }
+
+    @ExceptionHandler(EntityExceptionNotFound.class)
+    public ResponseEntity<Object> handleEntityNotFound(EntityExceptionNotFound ex, WebRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        Error error = new Error();
+        error.setStatus(status.value());
+        error.setDateHour(ZonedDateTime.now());
+        error.setTitle(ex.getMessage());
+
+        return handleExceptionInternal(ex, error, new HttpHeaders(), status, request);
     }
 
 }
