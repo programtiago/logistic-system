@@ -2,12 +2,14 @@ package com.devtiago.logisticsystem.domain;
 
 import com.devtiago.logisticsystem.enums.OrderStatus;
 import lombok.*;
-import org.springframework.cache.interceptor.CacheAspectSupport;
 
 import javax.persistence.*;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 @Table(name = "t_order")
 public class Order {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,8 +27,10 @@ public class Order {
     private ZonedDateTime previsionOrderDelivery;
     @ManyToOne
     @JoinColumn(name="client_id", nullable=false)
+    @ConvertGroup(from = Default.class, to = ValidationGroups.ClientId.class)
     private Client client;
     private ArrayList<Product> products;
-    private OrderStatus status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status = OrderStatus.STARTED;
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -16,6 +17,7 @@ import java.util.List;
 @Table(name = "t_shipment")
 public class Shipment {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,11 +16,13 @@ import java.time.ZonedDateTime;
 @Table(name = "t_transporter")
 public class Transporter {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String registration;
     private String driverName;
+    @Enumerated(EnumType.STRING)
     private MeansTransport transportType;
     private ZonedDateTime transportArrived;
     private ZonedDateTime transportDeparture;

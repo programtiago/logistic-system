@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,6 +15,7 @@ import java.time.ZonedDateTime;
 @Table(name = "t_occurrence")
 public class Occurrence {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

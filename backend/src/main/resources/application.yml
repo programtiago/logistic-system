@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/logistic_db
     username: root
-    password: Oportoeumanacao1893@
+    password: 
   jpa:
     show-sql: true
     hibernate:

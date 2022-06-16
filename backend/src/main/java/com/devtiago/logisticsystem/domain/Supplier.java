@@ -3,8 +3,8 @@ package com.devtiago.logisticsystem.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "t_supplier")
 public class Supplier {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
