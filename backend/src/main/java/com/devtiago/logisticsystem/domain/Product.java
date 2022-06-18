@@ -3,6 +3,7 @@ package com.devtiago.logisticsystem.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -19,7 +20,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String description;
+    @NotNull
     private String clientCode;
     private int quantity;
     private double weight;

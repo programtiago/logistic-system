@@ -1,4 +1,7 @@
 spring:
+  data:
+    rest:
+      basePath: /api
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/logistic_db
@@ -14,3 +17,12 @@ spring:
         naming:
           physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+logging:
+  level:
+    org.springframework: INFO
+    #    org.springframework: DEBUG
+    org.springframework.security: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
