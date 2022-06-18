@@ -42,4 +42,27 @@ public class ClientController {
     public Client add(@Valid @RequestBody Client client){
         return clientService.save(client);
     }
+
+    @PutMapping("/{clientId}")
+    public ResponseEntity<Client> update(@PathVariable Long clientId, @Valid @RequestBody Client client){
+        if (!clientRepository.existsById(clientId)){
+            return ResponseEntity.notFound().build();
+        }
+
+        client.setId(clientId);
+        client = clientService.save(client);
+
+        return ResponseEntity.ok(client);
+    }
+
+    @DeleteMapping("/{clientId}")
+    public ResponseEntity<Void> delete(@PathVariable Long clientId){
+        if (!clientRepository.existsById(clientId)){
+            return ResponseEntity.notFound().build();
+        }
+
+        clientService.delete(clientId);
+
+        return ResponseEntity.noContent().build();
+    }
 }

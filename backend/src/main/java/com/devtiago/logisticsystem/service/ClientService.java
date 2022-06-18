@@ -33,4 +33,10 @@ public class ClientService {
         return clientRepository.save(client);
 
     }
+
+    @Transactional
+    public void delete(Long clientId) {
+
+        clientRepository.deleteById(clientId);
+    }
 }
