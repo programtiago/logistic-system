@@ -1,5 +1,6 @@
 package com.devtiago.logisticsystem.domain;
 
+import com.devtiago.logisticsystem.enums.CategoryStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,5 +22,6 @@ public class Category {
     private Long id;
     private ZonedDateTime categoryCreated;
     private String description;
-    private String enabled;
+    @Enumerated(EnumType.STRING)
+    private CategoryStatus categoryStatus = CategoryStatus.ENABLED;
 }
